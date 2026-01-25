@@ -1,0 +1,10 @@
+# @package evaluation
+
+_target_: src.eval.evaluator.Evaluator
+
+metrics: ["accuracy", "f1", "bleu", "meteor"]
+save_predictions: true
+visualize_attention: true
+output_dir: "assets/evaluation"
+batch_size: 32
+num_workers: 4

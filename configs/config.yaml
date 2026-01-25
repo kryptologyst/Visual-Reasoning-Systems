@@ -1,0 +1,55 @@
+# @package _global_
+
+defaults:
+  - _self_
+  - model: visualbert
+  - data: vqa_v2
+  - training: default
+  - evaluation: default
+
+# Experiment settings
+experiment_name: "visual_reasoning_vqa"
+seed: 42
+device: auto  # auto, cuda, mps, cpu
+
+# Paths
+data_dir: "data"
+checkpoint_dir: "checkpoints"
+log_dir: "logs"
+assets_dir: "assets"
+
+# Model settings
+model:
+  name: "visualbert"
+  pretrained: true
+  freeze_vision: false
+  freeze_text: false
+
+# Data settings
+data:
+  batch_size: 32
+  num_workers: 4
+  image_size: [224, 224]
+  max_question_length: 50
+  max_answer_length: 20
+
+# Training settings
+training:
+  epochs: 10
+  learning_rate: 1e-4
+  weight_decay: 1e-4
+  warmup_steps: 1000
+  gradient_accumulation_steps: 1
+  mixed_precision: true
+
+# Evaluation settings
+evaluation:
+  metrics: ["accuracy", "f1", "bleu", "meteor"]
+  save_predictions: true
+  visualize_attention: true
+
+# Demo settings
+demo:
+  port: 8501
+  host: "localhost"
+  max_file_size: 10  # MB
